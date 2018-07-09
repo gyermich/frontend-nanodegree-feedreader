@@ -27,7 +27,7 @@ $(function() {
         });
 
 
-        /* Тestс that loops through each feed
+        /* Тest loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
@@ -39,7 +39,7 @@ $(function() {
         });
 
 
-        /* Tests that loops through each feed
+        /* Test loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
@@ -57,8 +57,7 @@ $(function() {
          * hidden by default.
          */
         it('is hidden by default', function() {
-            body = $('body');
-            expect($('body').attr('class')).toEqual('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
 
         /* Ensures the menu changes
@@ -71,10 +70,10 @@ $(function() {
             menuIcon = $('.menu-icon-link')
 
             menuIcon.click()
-            expect(body.attr('class')).not.toEqual('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(false);
 
             menuIcon.click()
-            expect($('body').attr('class')).toEqual('menu-hidden');
+            expect($('body').hasClass('menu-hidden')).toBe(true);
         });
     });
 
@@ -90,7 +89,8 @@ $(function() {
         })
 
         it('contains at least a single entry within the feed container', function(done) {
-            expect($('.feed').children.length).toBeGreaterThan(0);
+            expect($('.feed.entry')).toBeDefined();
+            expect($('.feed.entry')).not.toBeNull();
             done();
         });
 
