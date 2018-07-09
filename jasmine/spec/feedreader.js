@@ -34,7 +34,7 @@ $(function() {
         it('all feeds have url defined', function() {
             allFeeds.forEach(function(feed) {
                 expect(feed.url).toBeDefined();
-                expect(feed.url).not.toBeNull();
+                expect(feed.url.length).toBeGreaterThan(0);
             });
         });
 
@@ -46,7 +46,7 @@ $(function() {
         it('all feeds have a name defined', function() {
             allFeeds.forEach(function(feed) {
                 expect(feed.name).toBeDefined();
-                expect(feed.url).not.toBeNull();
+                expect(feed.name.length).toBeGreaterThan(0);
             });
         });
 
@@ -83,14 +83,11 @@ $(function() {
          * a single .entry element within the .feed container.
          */
         beforeEach(function(done){
-            loadFeed(0, function() {
-                done();
-            })
+            loadFeed(0, done);
         })
 
         it('contains at least a single entry within the feed container', function(done) {
-            expect($('.feed.entry')).toBeDefined();
-            expect($('.feed.entry')).not.toBeNull();
+            expect($('.feed .entry').length).toBeGreaterThan(0);
             done();
         });
 
